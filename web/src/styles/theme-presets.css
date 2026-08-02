@@ -450,6 +450,8 @@ For commercial licensing, please contact support@quantumnous.com
   --win95-darker: #000000;
   /* 字体:Tahoma 是 MS Sans Serif 的现代等价物,带 Win95 像素质感 */
   --font-sans: Tahoma, 'MS Sans Serif', Verdana, Geneva, sans-serif;
+  /* 复古模式徽章显示开关:仅 win95 主题下显示徽章 */
+  --win95-badge-display: inline-block;
 }
 .dark [data-theme-preset='win95'] {
   --background: #808080;

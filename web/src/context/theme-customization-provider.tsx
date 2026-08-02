@@ -135,11 +135,12 @@ export function ThemeCustomizationProvider(props: {
 
   // Mirror state to the <body> via data-* attributes so theme-presets.css can
   // override CSS variables at the right cascade layer.
+  // 注意:不再对默认 preset 做特殊处理(移除属性)。因为默认主题已改为 win95,
+  // win95 的 CSS 必须通过 data-theme-preset='win95' 才能生效,所以无论是否
+  // 等于默认值,都要写出属性。其他轴(radius/scale/font)仍保留原逻辑:
+  // 等于默认值时移除属性,让基础样式接管。
   useEffect(() => {
-    applyAttribute(
-      'data-theme-preset',
-      preset === DEFAULT_THEME_CUSTOMIZATION.preset ? null : preset
-    )
+    applyAttribute('data-theme-preset', preset)
   }, [preset])
 
   // Font is the one axis where we resolve before writing the attribute:

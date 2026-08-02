@@ -136,9 +136,9 @@ export type ThemeCustomization = {
 }
 
 export const DEFAULT_THEME_CUSTOMIZATION: ThemeCustomization = {
-  preset: 'frycat',
+  preset: 'win95',
   font: 'default',
-  radius: 'xl',
+  radius: 'none',
   scale: 'default',
   contentLayout: 'full',
 }
@@ -175,11 +175,13 @@ export const CONTENT_LAYOUT_VALUES: ReadonlySet<ContentLayout> = new Set([
 ])
 
 export const THEME_COOKIE_KEYS = {
-  preset: 'theme_preset',
-  font: 'theme_font',
-  radius: 'theme_radius',
-  scale: 'theme_scale',
-  contentLayout: 'theme_content_layout',
+  // 加 v2 后缀:让之前存在浏览器里的旧 cookie(theme_preset 等)自动失效,
+  // 强制采用新的默认主题(win95)。用户重新选主题后会写新 cookie。
+  preset: 'theme_preset_v2',
+  font: 'theme_font_v2',
+  radius: 'theme_radius_v2',
+  scale: 'theme_scale_v2',
+  contentLayout: 'theme_content_layout_v2',
 } as const
 
 /**

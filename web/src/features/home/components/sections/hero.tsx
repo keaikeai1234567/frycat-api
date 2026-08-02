@@ -114,6 +114,15 @@ export function Hero(props: HeroProps) {
             <span>{t('AI Application Infrastructure Foundation')}</span>
           </div>
 
+          {/* 复古模式激活徽章:Win95 主题生效时显示,让用户一眼确认 UI 改造已部署。
+           * 通过 CSS 变量 --win95-badge-display 控制,只在 win95 主题下显示。 */}
+          <div
+            className='mb-3 inline-block border border-black bg-[#000080] px-2 py-1 text-[10px] font-bold tracking-wider text-white uppercase'
+            style={{ display: 'var(--win95-badge-display, none)' }}
+          >
+            ★ Retro Mode Activated ★
+          </div>
+
           <h1
             className='landing-animate-fade-up text-[clamp(2.25rem,4.5vw,3.25rem)] leading-[1.15] font-bold tracking-tight'
             style={{ animationDelay: '60ms' }}
