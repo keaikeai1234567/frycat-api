@@ -32,33 +32,48 @@ export function Logo({ className, ...props }: SVGProps<SVGSVGElement>) {
       {...props}
     >
       <title>薯条猫API</title>
-      {/* Cat ears */}
-      <path d='M10 18 L8 8 L16 14 Z' fill='#FFB6C1' stroke='#FF69B4' strokeWidth='1' strokeLinejoin='round'/>
-      <path d='M38 18 L40 8 L32 14 Z' fill='#FFB6C1' stroke='#FF69B4' strokeWidth='1' strokeLinejoin='round'/>
-      {/* Cat face */}
-      <circle cx='24' cy='26' r='14' fill='#FFF0F5' stroke='#FF69B4' strokeWidth='1.5'/>
-      {/* Cat eyes */}
-      <ellipse cx='18' cy='24' rx='2.5' ry='3.5' fill='#FF69B4'/>
-      <ellipse cx='30' cy='24' rx='2.5' ry='3.5' fill='#FF69B4'/>
-      <circle cx='18.5' cy='23' r='1' fill='#FFF'/>
-      <circle cx='30.5' cy='23' r='1' fill='#FFF'/>
-      {/* Cat nose */}
-      <path d='M22 29 L24 31 L26 29 Z' fill='#FF69B4'/>
-      {/* Cat mouth */}
-      <path d='M24 31 Q21 34 19 32' fill='none' stroke='#FF69B4' strokeWidth='1.2' strokeLinecap='round'/>
-      <path d='M24 31 Q27 34 29 32' fill='none' stroke='#FF69B4' strokeWidth='1.2' strokeLinecap='round'/>
-      {/* French fry on top */}
-      <rect x='20' y='4' width='2' height='8' rx='1' fill='#FFD700' stroke='#FFA500' strokeWidth='0.5'/>
-      <rect x='23' y='3' width='2' height='9' rx='1' fill='#FFD700' stroke='#FFA500' strokeWidth='0.5'/>
-      <rect x='26' y='4' width='2' height='8' rx='1' fill='#FFD700' stroke='#FFA500' strokeWidth='0.5'/>
-      {/* Whiskers */}
-      <line x1='6' y1='26' x2='14' y2='27' stroke='#FFB6C1' strokeWidth='1' strokeLinecap='round'/>
-      <line x1='6' y1='29' x2='14' y2='29' stroke='#FFB6C1' strokeWidth='1' strokeLinecap='round'/>
-      <line x1='34' y1='27' x2='42' y2='26' stroke='#FFB6C1' strokeWidth='1' strokeLinecap='round'/>
-      <line x1='34' y1='29' x2='42' y2='29' stroke='#FFB6C1' strokeWidth='1' strokeLinecap='round'/>
-      {/* Blush */}
-      <circle cx='14' cy='30' r='2' fill='#FFB6C1' opacity='0.6'/>
-      <circle cx='34' cy='30' r='2' fill='#FFB6C1' opacity='0.6'/>
+      {/*
+        Win95 复古风 logo:深蓝方块(#000080,标题栏色)做底,
+        白色像素风猫剪影居中,呼应 Win95 视觉语言。
+        猫用几何方块构成(耳朵三角 + 头部方块 + 眼睛/鼻子),
+        模拟早期图标像素感。整体只用蓝白两色,与复古主题统一。
+      */}
+      {/* 蓝色底板(圆角 0,呼应 Win95 直角风格) */}
+      <rect x='2' y='2' width='44' height='44' fill='#000080' />
+      {/* 像素风白色描边(模拟 Win95 图标的亮边) */}
+      <rect
+        x='2'
+        y='2'
+        width='44'
+        height='44'
+        fill='none'
+        stroke='#ffffff'
+        strokeWidth='1'
+        opacity='0.3'
+      />
+      {/* 猫耳朵:两个白色三角 */}
+      <path d='M14 18 L11 10 L19 16 Z' fill='#ffffff' />
+      <path d='M34 18 L37 10 L29 16 Z' fill='#ffffff' />
+      {/* 猫头部:白色圆角方块 */}
+      <rect x='13' y='16' width='22' height='20' rx='2' fill='#ffffff' />
+      {/* 猫眼睛:深蓝方块(像素感) */}
+      <rect x='18' y='22' width='3' height='4' fill='#000080' />
+      <rect x='27' y='22' width='3' height='4' fill='#000080' />
+      {/* 猫鼻子:深蓝小三角 */}
+      <path d='M22 28 L24 30 L26 28 Z' fill='#000080' />
+      {/* 猫嘴:深蓝线条 */}
+      <path
+        d='M24 30 L24 32 M24 32 L21 33 M24 32 L27 33'
+        fill='none'
+        stroke='#000080'
+        strokeWidth='1'
+        strokeLinecap='round'
+      />
+      {/* 胡须:浅蓝细线(呼应 Win95 的细节质感) */}
+      <line x1='8' y1='24' x2='13' y2='25' stroke='#8080ff' strokeWidth='0.8' strokeLinecap='round' />
+      <line x1='8' y1='28' x2='13' y2='28' stroke='#8080ff' strokeWidth='0.8' strokeLinecap='round' />
+      <line x1='35' y1='25' x2='40' y2='24' stroke='#8080ff' strokeWidth='0.8' strokeLinecap='round' />
+      <line x1='35' y1='28' x2='40' y2='28' stroke='#8080ff' strokeWidth='0.8' strokeLinecap='round' />
     </svg>
   )
 }

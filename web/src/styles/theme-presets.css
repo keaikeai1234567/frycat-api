@@ -406,16 +406,15 @@ For commercial licensing, please contact support@quantumnous.com
 }
 
 /* ── Win95 ──────────────────────────────────────────────────────────────
- * 经典 Windows 95 视觉语言:窗口灰底(#c0c0c0)+ 深蓝标题栏色(#000080)
+ * 经典 Windows 95 视觉语言:全白底(#ffffff,清爽)+ 深蓝标题栏色(#000080)
  * + 3D 凸起/凹陷边框(白/灰双色 box-shadow)+ 直角 + 像素感字体。
- * 用 CSS 变量定义颜色,用 data-slot 选择器给按钮/输入框/卡片加 3D 边框,
- * 还原 Win95 "凸起按钮、凹陷输入框"的经典质感。 */
+ * 背景全白让内容清爽,3D 边框保留复古质感,蓝白配色统一。 */
 [data-theme-preset='win95'] {
-  --background: #c0c0c0;
+  --background: #ffffff;
   --foreground: #000000;
-  --card: #c0c0c0;
+  --card: #ffffff;
   --card-foreground: #000000;
-  --popover: #c0c0c0;
+  --popover: #ffffff;
   --popover-foreground: #000000;
   --primary: #000080;
   --primary-foreground: #ffffff;
@@ -519,6 +518,23 @@ For commercial licensing, please contact support@quantumnous.com
   background: transparent;
   border-top: 1px solid var(--win95-dark);
   border-bottom: 1px solid var(--win95-light);
+}
+/* Hero 装饰背景(radial-gradient + grid pattern)在 Win95 白底下太花,
+ * 干净的纯白更符合复古桌面应用的质感,直接隐藏。 */
+[data-theme-preset='win95'] section[class*='relative'][class*='overflow-hidden'] > div[class*='pointer-events-none'][class*='absolute'][class*='-z-10'] {
+  display: none;
+}
+/* Hero 标题渐变文字在 Win95 下改为深蓝实色,保持复古统一 */
+[data-theme-preset='win95'] .bg-gradient-to-r.bg-clip-text.text-transparent {
+  background: none;
+  color: var(--primary);
+  -webkit-text-fill-color: var(--primary);
+}
+/* Hero 粉色 pill 徽章在 Win95 下改为深蓝框,呼应主题 */
+[data-theme-preset='win95'] .border-pink-500\/20 {
+  border-color: var(--primary);
+  background: transparent;
+  color: var(--primary);
 }
 
 /* ── Simple Large-font ────────────────────────────────────────────────── */
