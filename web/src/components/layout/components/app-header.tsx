@@ -16,12 +16,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { ConfigDrawer } from '@/components/config-drawer'
-import { LanguageSwitcher } from '@/components/language-switcher'
-import { NotificationPopover } from '@/components/notification-popover'
-import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
-import { useNotifications } from '@/hooks/use-notifications'
 import { useTopNavLinks } from '@/hooks/use-top-nav-links'
 
 import { defaultTopNavLinks } from '../config/top-nav.config'
@@ -31,8 +26,11 @@ import { SystemBrand } from './system-brand'
 import { TopNav } from './top-nav'
 
 /**
- * General application Header component
- * Integrates navigation bar, search, configuration and profile functions
+ * General application Header component.
+ *
+ * 操作按钮(语言 / 通知 / 主题 / 个人)已全部下沉到 AppSidebar footer,
+ * header 只保留:品牌标识 + 顶部导航(后端动态菜单)+ 搜索框。
+ * 这样顶部更清爽,所有"操作"集中在左侧侧边栏。
  *
  * @example
  * // Basic usage
@@ -76,21 +74,6 @@ type AppHeaderProps = {
    * Custom right content, overrides default right content if provided
    */
   rightContent?: React.ReactNode
-  /**
-   * Whether to show notification button
-   * @default true
-   */
-  showNotifications?: boolean
-  /**
-   * Whether to show config drawer
-   * @default true
-   */
-  showConfigDrawer?: boolean
-  /**
-   * Whether to show profile dropdown
-   * @default true
-   */
-  showProfileDropdown?: boolean
 }
 
 export function AppHeader({
@@ -99,16 +82,10 @@ export function AppHeader({
   leftContent,
   showSearch = true,
   rightContent,
-  showNotifications = true,
-  showConfigDrawer = true,
-  showProfileDropdown = true,
 }: AppHeaderProps) {
   // Prioritize dynamically generated links from backend
   const dynamicLinks = useTopNavLinks()
   const links = dynamicLinks.length > 0 ? dynamicLinks : navLinks
-
-  // Notifications hook
-  const notifications = useNotifications()
 
   return (
     <>
@@ -127,21 +104,6 @@ export function AppHeader({
               </div>
             )}
             {showSearch && <Search />}
-            {showNotifications && (
-              <NotificationPopover
-                open={notifications.popoverOpen}
-                onOpenChange={notifications.setPopoverOpen}
-                unreadCount={notifications.unreadCount}
-                activeTab={notifications.activeTab}
-                onTabChange={notifications.setActiveTab}
-                notice={notifications.notice}
-                announcements={notifications.announcements}
-                loading={notifications.loading}
-              />
-            )}
-            <LanguageSwitcher />
-            {showConfigDrawer && <ConfigDrawer />}
-            {showProfileDropdown && <ProfileDropdown />}
           </div>
         )}
       </Header>

@@ -82,6 +82,13 @@ export const THEME_PRESETS = [
     name: 'Lavender Dream',
     swatches: ['oklch(0.5709 0.1808 306.89)', 'oklch(0.811 0.0589 201.14)'],
   },
+  {
+    // Rainbow: 七色环渐变作为主视觉,强调"花姑娘"主题。
+    // swatches 用首尾两色(赤/紫)做主题选择器缩略图。
+    value: 'rainbow',
+    name: 'Rainbow',
+    swatches: ['oklch(0.65 0.25 25)', 'oklch(0.65 0.25 295)'],
+  },
 ] as const
 
 export type ThemePreset = (typeof THEME_PRESETS)[number]['value']
