@@ -33,41 +33,45 @@ For commercial licensing, please contact support@quantumnous.com
  */
 
 /* ── 薯条猫 (FryCat) ─────────────────────────────────────────────────── */
-/* Cute girl-style pink theme with warm, soft colors and rounded corners */
+/* Cute girl-style pink theme with warm, soft colors and rounded corners.
+ * Palette story: hot-pink primary (the "cat" side) + fry-gold accent
+ * (the "fry" side), bridged by peach and magenta. The warm-gold chart-3
+ * is deliberately the most saturated fry tone so it reads as a true
+ * accent against the pink-dominant surfaces. */
 [data-theme-preset='frycat'] {
-  --primary: oklch(0.72 0.22 350);        /* Hot pink */
+  --primary: oklch(0.69 0.21 354);        /* Hot pink, slightly rose-leaning */
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.85 0.12 350);      /* Light pink */
-  --secondary-foreground: oklch(0.35 0.15 350);
-  --ring: oklch(0.72 0.22 350);
-  --chart-1: oklch(0.72 0.22 350);        /* Pink */
-  --chart-2: oklch(0.75 0.18 30);         /* Peach */
-  --chart-3: oklch(0.80 0.15 80);          /* Warm gold */
-  --chart-4: oklch(0.70 0.20 330);        /* Magenta */
-  --chart-5: oklch(0.85 0.10 350);        /* Soft pink */
-  --sidebar-primary: oklch(0.72 0.22 350);
+  --secondary: oklch(0.86 0.10 354);      /* Light pink */
+  --secondary-foreground: oklch(0.36 0.16 354);
+  --ring: oklch(0.69 0.21 354);
+  --chart-1: oklch(0.69 0.21 354);        /* Hot pink */
+  --chart-2: oklch(0.77 0.16 40);         /* Peach */
+  --chart-3: oklch(0.82 0.16 72);          /* Fry gold — signature accent */
+  --chart-4: oklch(0.66 0.20 330);        /* Magenta */
+  --chart-5: oklch(0.86 0.10 350);        /* Soft pink */
+  --sidebar-primary: oklch(0.69 0.21 354);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.72 0.22 350);
+  --sidebar-accent: oklch(0.69 0.21 354);
   --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-ring: oklch(0.72 0.22 350);
+  --sidebar-ring: oklch(0.69 0.21 354);
   --radius: 1.2rem;
 }
 .dark [data-theme-preset='frycat'] {
-  --primary: oklch(0.75 0.20 350);
-  --primary-foreground: oklch(0.15 0.05 350);
-  --secondary: oklch(0.40 0.10 350);
-  --secondary-foreground: oklch(0.95 0.02 350);
-  --ring: oklch(0.75 0.20 350);
-  --chart-1: oklch(0.75 0.20 350);
-  --chart-2: oklch(0.78 0.16 30);
-  --chart-3: oklch(0.82 0.13 80);
+  --primary: oklch(0.75 0.19 354);
+  --primary-foreground: oklch(0.15 0.05 354);
+  --secondary: oklch(0.42 0.10 354);
+  --secondary-foreground: oklch(0.95 0.02 354);
+  --ring: oklch(0.75 0.19 354);
+  --chart-1: oklch(0.75 0.19 354);
+  --chart-2: oklch(0.78 0.16 40);
+  --chart-3: oklch(0.82 0.14 72);
   --chart-4: oklch(0.72 0.18 330);
   --chart-5: oklch(0.85 0.08 350);
-  --sidebar-primary: oklch(0.75 0.20 350);
-  --sidebar-primary-foreground: oklch(0.15 0.05 350);
-  --sidebar-accent: oklch(0.75 0.20 350);
-  --sidebar-accent-foreground: oklch(0.95 0.02 350);
-  --sidebar-ring: oklch(0.75 0.20 350);
+  --sidebar-primary: oklch(0.75 0.19 354);
+  --sidebar-primary-foreground: oklch(0.15 0.05 354);
+  --sidebar-accent: oklch(0.75 0.19 354);
+  --sidebar-accent-foreground: oklch(0.95 0.02 354);
+  --sidebar-ring: oklch(0.75 0.19 354);
 }
 
 /* ── Underground ──────────────────────────────────────────────────────── */

@@ -27,7 +27,7 @@ export const THEME_PRESETS = [
   {
     value: 'frycat',
     name: '薯条猫',
-    swatches: ['oklch(0.72 0.22 350)', 'oklch(0.85 0.12 350)'],
+    swatches: ['oklch(0.69 0.21 354)', 'oklch(0.82 0.16 72)'],
   },
   {
     value: 'default',

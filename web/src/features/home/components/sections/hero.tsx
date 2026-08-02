@@ -81,15 +81,15 @@ export function Hero(props: HeroProps) {
 
   return (
     <section className='relative z-10 overflow-hidden px-6 pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-36 lg:pb-28'>
-      {/* Radial gradient background */}
+      {/* Radial gradient background — frycat warm pink + fry gold + magenta */}
       <div
         aria-hidden
         className='pointer-events-none absolute inset-0 -z-10 opacity-25 dark:opacity-[0.12]'
         style={{
           background: [
-            'radial-gradient(ellipse 60% 50% at 20% 20%, oklch(0.75 0.18 350 / 80%) 0%, transparent 70%)',
-            'radial-gradient(ellipse 50% 40% at 80% 15%, oklch(0.70 0.15 10 / 60%) 0%, transparent 70%)',
-            'radial-gradient(ellipse 40% 35% at 40% 80%, oklch(0.72 0.15 320 / 40%) 0%, transparent 70%)',
+            'radial-gradient(ellipse 60% 50% at 20% 20%, oklch(0.69 0.21 354 / 80%) 0%, transparent 70%)',
+            'radial-gradient(ellipse 50% 40% at 80% 15%, oklch(0.82 0.16 72 / 60%) 0%, transparent 70%)',
+            'radial-gradient(ellipse 40% 35% at 40% 80%, oklch(0.66 0.20 330 / 40%) 0%, transparent 70%)',
           ].join(', '),
         }}
       />
@@ -120,7 +120,7 @@ export function Hero(props: HeroProps) {
           >
             {t('Unified API Gateway for')}
             <br />
-            <span className='bg-gradient-to-r from-pink-400 via-rose-400 to-purple-500 bg-clip-text text-transparent'>
+            <span className='bg-gradient-to-r from-pink-500 via-rose-400 to-amber-400 bg-clip-text text-transparent'>
               {t('Vast Range of AI Models')}
             </span>
           </h1>
