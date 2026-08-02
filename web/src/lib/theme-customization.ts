@@ -89,6 +89,14 @@ export const THEME_PRESETS = [
     name: 'Rainbow',
     swatches: ['oklch(0.65 0.25 25)', 'oklch(0.65 0.25 295)'],
   },
+  {
+    // Win95 复古:经典 Windows 95 视觉语言。
+    // 主色用深蓝(#000080,标题栏色),次色用窗口灰(#c0c0c0)。
+    // swatches 预览深蓝 → 灰的搭配。
+    value: 'win95',
+    name: 'Win95',
+    swatches: ['oklch(0.27 0.18 264)', 'oklch(0.78 0.01 250)'],
+  },
 ] as const
 
 export type ThemePreset = (typeof THEME_PRESETS)[number]['value']

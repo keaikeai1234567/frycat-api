@@ -405,6 +405,120 @@ For commercial licensing, please contact support@quantumnous.com
   100% { background-position: 200% 0%; }
 }
 
+/* ── Win95 ──────────────────────────────────────────────────────────────
+ * 经典 Windows 95 视觉语言:窗口灰底(#c0c0c0)+ 深蓝标题栏色(#000080)
+ * + 3D 凸起/凹陷边框(白/灰双色 box-shadow)+ 直角 + 像素感字体。
+ * 用 CSS 变量定义颜色,用 data-slot 选择器给按钮/输入框/卡片加 3D 边框,
+ * 还原 Win95 "凸起按钮、凹陷输入框"的经典质感。 */
+[data-theme-preset='win95'] {
+  --background: #c0c0c0;
+  --foreground: #000000;
+  --card: #c0c0c0;
+  --card-foreground: #000000;
+  --popover: #c0c0c0;
+  --popover-foreground: #000000;
+  --primary: #000080;
+  --primary-foreground: #ffffff;
+  --secondary: #c0c0c0;
+  --secondary-foreground: #000000;
+  --muted: #808080;
+  --muted-foreground: #000000;
+  --accent: #000080;
+  --accent-foreground: #ffffff;
+  --destructive: #800000;
+  --destructive-foreground: #ffffff;
+  --border: #808080;
+  --input: #ffffff;
+  --ring: #000080;
+  --radius: 0px;
+  --chart-1: #000080;
+  --chart-2: #008000;
+  --chart-3: #800000;
+  --chart-4: #808000;
+  --chart-5: #008080;
+  --sidebar: #c0c0c0;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000080;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #000080;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #808080;
+  --sidebar-ring: #000080;
+  /* Win95 3D 边框专用色:亮边(左上)、暗边(右下)、更深暗边(外框) */
+  --win95-light: #ffffff;
+  --win95-dark: #808080;
+  --win95-darker: #000000;
+  /* 字体:Tahoma 是 MS Sans Serif 的现代等价物,带 Win95 像素质感 */
+  --font-sans: Tahoma, 'MS Sans Serif', Verdana, Geneva, sans-serif;
+}
+.dark [data-theme-preset='win95'] {
+  --background: #808080;
+  --foreground: #ffffff;
+  --card: #808080;
+  --card-foreground: #ffffff;
+  --popover: #808080;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #000080;
+  --secondary: #c0c0c0;
+  --secondary-foreground: #000000;
+  --muted: #c0c0c0;
+  --muted-foreground: #000000;
+  --accent: #ffffff;
+  --accent-foreground: #000080;
+  --border: #000000;
+  --ring: #ffffff;
+  --sidebar: #808080;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #000080;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #000080;
+  --sidebar-border: #000000;
+  --sidebar-ring: #ffffff;
+}
+
+/* Win95 3D 凸起边框:左上亮 + 右下暗,模拟物理凸起。
+ * 用于按钮、卡片、对话框、面板等"实体"元素。 */
+[data-theme-preset='win95'] [data-slot='button']:not([data-variant='link']):not([data-variant='ghost']) {
+  border: 1px solid var(--win95-darker);
+  border-radius: 0;
+  box-shadow:
+    inset -1px -1px 0 0 var(--win95-dark),
+    inset 1px 1px 0 0 var(--win95-light);
+}
+[data-theme-preset='win95'] [data-slot='button']:not([data-variant='link']):not([data-variant='ghost']):active {
+  box-shadow:
+    inset 1px 1px 0 0 var(--win95-dark),
+    inset -1px -1px 0 0 var(--win95-light);
+}
+/* 卡片、对话框、sheet、popover:凸起边框 */
+[data-theme-preset='win95'] [data-slot='card'],
+[data-theme-preset='win95'] [data-slot='dialog-content'],
+[data-theme-preset='win95'] [data-slot='sheet-content'],
+[data-theme-preset='win95'] [data-slot='popover-content'] {
+  border: 1px solid var(--win95-darker);
+  border-radius: 0;
+  box-shadow:
+    inset -1px -1px 0 0 var(--win95-dark),
+    inset 1px 1px 0 0 var(--win95-light);
+}
+/* 输入框、textarea:凹陷边框(上左暗 + 下右亮) */
+[data-theme-preset='win95'] [data-slot='input'],
+[data-theme-preset='win95'] [data-slot='textarea'] {
+  border: 1px solid var(--win95-darker);
+  border-radius: 0;
+  box-shadow:
+    inset 1px 1px 0 0 var(--win95-dark),
+    inset -1px -1px 0 0 var(--win95-light);
+}
+/* 分隔线:用 Win95 凹陷线(上暗下亮) */
+[data-theme-preset='win95'] [data-slot='separator'] {
+  background: transparent;
+  border-top: 1px solid var(--win95-dark);
+  border-bottom: 1px solid var(--win95-light);
+}
+
 /* ── Simple Large-font ────────────────────────────────────────────────── */
 [data-theme-preset='simple-large'] {
   --background: oklch(0.99 0 0);

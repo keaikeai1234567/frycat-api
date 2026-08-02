@@ -25,7 +25,7 @@ import { getCookie } from '@/lib/cookies'
 import { cn } from '@/lib/utils'
 
 import { AppHeader } from './app-header'
-import { AppSidebar } from './app-sidebar'
+import { FloatingDock } from './floating-dock'
 
 type AuthenticatedLayoutProps = {
   children?: React.ReactNode
@@ -41,18 +41,25 @@ export function AuthenticatedLayout(props: AuthenticatedLayoutProps) {
           <SkipToMain />
           <AppHeader />
           <div className='flex min-h-0 w-full flex-1'>
-            <AppSidebar />
+            {/*
+             * sidebar 已移除:所有操作按钮下沉到底部 FloatingDock,
+             * 导航保留在 AppHeader 的 top-nav(桌面)与 mobile-drawer(移动)。
+             * 保留 SidebarProvider/SidebarInset 作为布局容器,不破坏现有依赖。
+             */}
             <SidebarInset
               className={cn(
                 '@container/content',
                 'h-[calc(100svh-var(--app-header-height,0px))]',
                 'min-h-0 overflow-hidden',
+                /* 底部留白,避免 FloatingDock 遮挡内容 */
+                'pb-20',
                 'peer-data-[variant=inset]:h-[calc(100svh-var(--app-header-height,0px)-(var(--spacing)*4))]'
               )}
             >
               {props.children ?? <AnimatedOutlet />}
             </SidebarInset>
           </div>
+          <FloatingDock />
         </SidebarProvider>
       </SearchProvider>
     </LayoutProvider>
