@@ -185,6 +185,17 @@ func InitOptionMap() {
 
 	common.OptionMapRWMutex.Unlock()
 	loadOptionsFromDatabase()
+	// Migrate old "New API" system name to "薯条猫API"
+	migrateSystemName()
+}
+
+// migrateSystemName updates the database if the stored system name is still "New API"
+func migrateSystemName() {
+	if common.SystemName == "New API" {
+		common.SysLog("Migrating system name from 'New API' to '薯条猫API'")
+		common.SystemName = "薯条猫API"
+		_ = UpdateOption("SystemName", "薯条猫API")
+	}
 }
 
 func loadOptionsFromDatabase() {
