@@ -1,0 +1,30 @@
+# FryCat API — SQLite 单容器 docker-compose
+# 适合:个人本地 / 任意支持 docker-compose 的免费平台(Render / Railway / Fly.io 等)
+# 镜像 public,直接拉即可。SQLite 数据写到 ./data 目录,持久化。
+#
+# 启动:docker compose -f deploy/docker-compose.sqlite.yml up -d
+# 访问:http://localhost:3000  (首次访问创建管理员账号)
+
+services:
+  frycat-api:
+    image: ghcr.io/keaikeai1234567/frycat-api:latest
+    container_name: frycat-api
+    restart: always
+    command: --log-dir /app/logs
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/data
+      - ./logs:/app/logs
+    environment:
+      - TZ=Asia/Shanghai
+      - ERROR_LOG_ENABLED=true
+      - BATCH_UPDATE_ENABLED=true
+      # SQLite 模式:不设 SQL_DSN 即默认 /data/one-api.db
+      # 生产环境多节点部署时取消下面注释并改成随机字符串
+      # - SESSION_SECRET=change-me-to-a-random-string
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://localhost:3000/api/status | grep -o '\"success\":\\s*true' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

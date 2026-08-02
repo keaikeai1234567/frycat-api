@@ -1,0 +1,107 @@
+# Sealos / K8s 部署清单 — FryCat API
+#
+# 镜像来源:ghcr.io/keaikeai1234567/frycat-api:latest
+# 镜像是 public 的,无需 imagePullSecret。
+# 数据库:容器内置 SQLite(数据写 /data,挂 PVC 持久化),零外部依赖。
+# 端口:容器 3000,Service 暴露 80。
+#
+# 部署方式:
+#   Sealos 控制台 -> 应用部署 -> "从 YAML 创建" -> 粘贴本文件 -> 部署
+#   或 kubectl apply -f deploy/sealos.yaml
+#
+# 部署完成后 Sealos 会自动分配一个外网域名,在"应用详情"里能看到。
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frycat-api
+  labels:
+    app: frycat-api
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate          # SQLite 单文件,不能多副本同时写,用 Recreate 而非 RollingUpdate
+  selector:
+    matchLabels:
+      app: frycat-api
+  template:
+    metadata:
+      labels:
+        app: frycat-api
+    spec:
+      containers:
+        - name: frycat-api
+          image: ghcr.io/keaikeai1234567/frycat-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: ERROR_LOG_ENABLED
+              value: "true"
+            - name: BATCH_UPDATE_ENABLED
+              value: "true"
+            # SQLite 模式:不设 SQL_DSN 即默认 /data/one-api.db
+            # 多节点部署时再设 SESSION_SECRET 为随机字符串
+            # - name: SESSION_SECRET
+            #   value: <your-random-string>
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          # 健康检查:命中 /api/status 且 success=true
+          livenessProbe:
+            httpGet:
+              path: /api/status
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api/status
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: frycat-api-data
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: frycat-api-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi          # 个人用足够;日志多的话调到 5Gi
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frycat-api
+spec:
+  type: ClusterIP
+  selector:
+    app: frycat-api
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
